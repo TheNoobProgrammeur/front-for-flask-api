@@ -129,7 +129,7 @@ workflows:
             - go-to-prod
           filters:
             branches:
-              ignore: /.*/
+              - master
             tags:
               only: /^v.*/
       - deploy-prod:
