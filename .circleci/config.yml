@@ -126,7 +126,7 @@ workflows:
               ignore: /^v.*/
       - build-prod:
           requires:
-            - build-dev
+            - go-to-prod
           filters:
             branches:
               ignore: /.*/
@@ -134,8 +134,6 @@ workflows:
               only: /^v.*/
       - deploy-prod:
           requires:
-            - lint
-            - prettier
             - build-prod
           filters:
             branches:
