@@ -23,7 +23,7 @@ commands:
           command: yarn build:<< parameters.targetEnv >>
       - run:
           name: Copy front end artifacts to workspace
-          command: cp dist/alexandrie-front /tmp/front-build -r
+          command: cp dist/myApplicationFront /tmp/front-build -r
       - store_artifacts:
           path: /tmp/front-build
       - persist_to_workspace:
@@ -46,7 +46,7 @@ jobs:
   test: &test
     docker:
       - image: circleci/node:10-browsers
-    working_directory: ~/alexandrie-front
+    working_directory: ~/myApplicationFront
     steps:
       - setup_deps
       - run:
