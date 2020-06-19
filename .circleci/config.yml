@@ -93,12 +93,12 @@ jobs:
     <<: *test
     steps:
       - deploy_netlify:
-          siteId: '366210b7-d2a8-49a0-a14a-d206a44fb631'
+          siteId: $SITE_DEV_ID
   deploy-prod:
     <<: *test
     steps:
       - deploy_netlify:
-          siteId: '22701f72-821d-44b6-83e4-63fdc802f174'
+          siteId: $SITE_ID
   release:
     <<: *test
     steps:
