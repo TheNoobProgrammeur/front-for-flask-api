@@ -129,7 +129,8 @@ workflows:
             - go-to-prod
           filters:
             branches:
-              - master
+              only:
+                - master
             tags:
               only: /^v.*/
       - deploy-prod:
@@ -137,7 +138,8 @@ workflows:
             - build-prod
           filters:
             branches:
-              ignore: /.*/
+              only:
+                - master
             tags:
               only: /^v.*/
       - deploy-dev:
