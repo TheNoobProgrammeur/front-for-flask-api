@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
+  production: false,
   api_url: 'https://intense-gorge-16558.herokuapp.com/',
 };
