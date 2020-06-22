@@ -11,8 +11,6 @@ import { UserService, SessionService } from '../core/services';
 
 @Injectable()
 export class HomeAuthResolver implements CanActivate {
-  public attente: boolean;
-
   constructor(
     private router: Router,
     private authenticationService: UserService,
@@ -22,7 +20,7 @@ export class HomeAuthResolver implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authenticationService.userIsConnected();
 
-    if (this.sessiosnService.getSessionStatus() == true) {
+    if (this.sessiosnService.getSessionStatus()) {
       return true;
     }
     this.router.navigate(['/login']);
