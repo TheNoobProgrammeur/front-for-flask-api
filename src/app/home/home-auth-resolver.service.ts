@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
-  Resolve,
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
@@ -20,7 +19,7 @@ export class HomeAuthResolver implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authenticationService.userIsConnected();
 
-    if (this.sessiosnService.getSessionStatus() === true) {
+    if (this.sessiosnService.getSessionStatus()) {
       return true;
     }
     this.router.navigate(['/login']);

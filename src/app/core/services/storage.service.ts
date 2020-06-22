@@ -2,15 +2,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SessionService {
-  getSessionStatus(): boolean {
-    return window.sessionStorage.actived;
+  getSessionStatus(): string {
+    return window.sessionStorage.token;
   }
 
-  saveSessionStatus(token: boolean) {
-    window.sessionStorage.actived = token;
+  saveSessionStatus(token: string) {
+    window.sessionStorage.token = token;
   }
 
   destroySessionStatus() {
-    window.sessionStorage.removeItem('actived');
+    window.sessionStorage.removeItem('token');
   }
 }

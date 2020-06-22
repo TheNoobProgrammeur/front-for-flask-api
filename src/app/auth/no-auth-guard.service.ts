@@ -5,19 +5,20 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
-import { UserService } from '../core';
+import { SessionService, UserService } from '../core';
 
 @Injectable()
 export class NoAuthGuard implements CanActivate {
   constructor(
     private router: Router,
     private authenticationService: UserService,
+    private sessiosnService: SessionService,
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authenticationService.userIsConnected();
 
-    if (this.authenticationService.isConnected === true) {
+    if (this.sessiosnService.getSessionStatus()) {
       this.router.navigate(['/home']);
       return false;
     }

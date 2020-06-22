@@ -3,34 +3,51 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { SessionService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private sessionservice: SessionService,
+  ) {}
 
   static formatErrors(error: any) {
-    console.error('Erreur API');
+    console.error('Error API');
     return throwError(error.error);
   }
 
-  // @ts-ignore
   get(path: string, params: HttpHeaders = new HttpHeaders()): Observable<any> {
     return this.http
       .get(`${environment.api_url}${path}`, { headers: params })
       .pipe(catchError(ApiService.formatErrors));
   }
 
-  post(path: string, body = {}): Observable<any> {
+  post(path: string, body = {}, auth: boolean = false): Observable<any> {
+    if (auth) {
+      const headers = new HttpHeaders();
+      headers.append(
+        'Authorization',
+        'Bearer ' + this.sessionservice.getSessionStatus(),
+      );
+
+      return this.http
+        .post(`${environment.api_url}${path}`, body, { headers })
+        .pipe(catchError(ApiService.formatErrors));
+    }
+
     return this.http
-      .post(`${environment.api_url}${path}`, JSON.stringify(body))
+      .post(`${environment.api_url}${path}`, body)
       .pipe(catchError(ApiService.formatErrors));
   }
 
-  put(path: string, body = {}): Observable<any> {
+  put(path: string, payload = new HttpParams()): Observable<any> {
     return this.http
-      .put(`${environment.api_url}${path}`, JSON.stringify(body))
+      .put(`${environment.api_url}${path}`, payload, {
+        headers: { 'Content-Type': 'application/json' },
+      })
       .pipe(catchError(ApiService.formatErrors));
   }
 
