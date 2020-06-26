@@ -19,27 +19,34 @@ export class ApiService {
     return throwError(error.error);
   }
 
-  get(path: string, params: HttpHeaders = new HttpHeaders()): Observable<any> {
+  get(path: string, body = {}, auth: boolean = false): Observable<any> {
+    let header: HttpHeaders;
+
+    if (auth) {
+      const token = this.sessionservice.getToken();
+      header = new HttpHeaders({ Authorization: 'Bearer ' + token });
+    } else {
+      header = new HttpHeaders();
+    }
+
+    const param = new HttpParams({ fromObject: body });
+
     return this.http
-      .get(`${environment.api_url}${path}`, { headers: params })
+      .get(`${environment.api_url}${path}`, { headers: header, params: param })
       .pipe(catchError(ApiService.formatErrors));
   }
 
   post(path: string, body = {}, auth: boolean = false): Observable<any> {
+    const headers = new HttpHeaders();
     if (auth) {
-      const headers = new HttpHeaders();
       headers.append(
         'Authorization',
-        'Bearer ' + this.sessionservice.getSessionStatus(),
+        'Bearer ' + this.sessionservice.getToken(),
       );
-
-      return this.http
-        .post(`${environment.api_url}${path}`, body, { headers })
-        .pipe(catchError(ApiService.formatErrors));
     }
 
     return this.http
-      .post(`${environment.api_url}${path}`, body)
+      .post(`${environment.api_url}${path}`, body, { headers })
       .pipe(catchError(ApiService.formatErrors));
   }
 

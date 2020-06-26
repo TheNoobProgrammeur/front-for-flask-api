@@ -18,7 +18,7 @@ export class NoAuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authenticationService.userIsConnected();
 
-    if (this.sessiosnService.getSessionStatus()) {
+    if (this.sessiosnService.getUser().isConected === true) {
       this.router.navigate(['/home']);
       return false;
     }

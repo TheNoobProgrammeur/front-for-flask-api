@@ -14,8 +14,6 @@ export class HomeComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
   ) {}
-  isConnect: boolean;
-  ngOnInit(): void {
-    this.isConnect = this.userService.isConnected;
-  }
+
+  ngOnInit(): void {}
 }

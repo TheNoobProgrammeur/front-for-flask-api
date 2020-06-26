@@ -46,8 +46,8 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     this.authenticationService.register(
       this.registerForm.value.username,
-      this.registerForm.value.email,
       this.registerForm.value.password,
+      this.registerForm.value.email,
     );
   }
 }
