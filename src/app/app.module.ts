@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +19,7 @@ import { CoreModule } from './core';
     HomeModule,
     HttpClientModule,
     CoreModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
