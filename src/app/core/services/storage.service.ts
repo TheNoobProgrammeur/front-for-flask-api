@@ -1,16 +1,29 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models';
 
 @Injectable()
 export class SessionService {
-  getSessionStatus(): boolean {
-    return window.sessionStorage.actived;
+  getToken(): string {
+    return window.sessionStorage.token;
   }
 
-  saveSessionStatus(token: boolean) {
-    window.sessionStorage.actived = token;
+  saveToken(token: string) {
+    window.sessionStorage.token = token;
   }
 
-  destroySessionStatus() {
-    window.sessionStorage.removeItem('actived');
+  destroyToken() {
+    window.sessionStorage.removeItem('token');
+  }
+
+  saveUser(user: User) {
+    window.sessionStorage.user = JSON.stringify(user);
+  }
+
+  getUser(): User {
+    return JSON.parse(window.sessionStorage.user);
+  }
+
+  destroyUser() {
+    window.sessionStorage.removeItem('user');
   }
 }

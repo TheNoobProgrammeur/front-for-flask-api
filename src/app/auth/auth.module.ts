@@ -8,10 +8,16 @@ import { RegisterRoutingModule } from './register/register-routing.module';
 import { LoginRoutingModule } from './login/login-routing.module';
 
 import { NoAuthGuard } from './no-auth-guard.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
-  imports: [CommonModule, RegisterRoutingModule, LoginRoutingModule],
+  imports: [
+    CommonModule,
+    RegisterRoutingModule,
+    LoginRoutingModule,
+    ReactiveFormsModule,
+  ],
   exports: [LoginComponent],
   providers: [NoAuthGuard],
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../environments/environment';
-import { UserService } from './core/services';
+import { User } from './core/models';
+import { SessionService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,9 @@ import { UserService } from './core/services';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private userService: UserService) {
+  constructor(private sessionService: SessionService) {
+    const user = new User();
+    this.sessionService.saveUser(user);
     console.log(environment.production); // Logs false for default environment
   }
   title = 'myApplicationFront';
