@@ -18,7 +18,6 @@ export class HomeAuthResolver implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authenticationService.userIsConnected();
-
     if (this.sessiosnService.getUser().isConected === true) {
       return true;
     }
