@@ -1,0 +1,27 @@
+$green: #28a745;
+$white: #fff !default;
+$sidebar-base-width: 17rem;
+
+$maron-baground: #201616;
+$maron-item-color: #201616;
+$active-baground: #fe9c65;
+$lien-baground: #cc5715;
+
+#sideNav {
+  background-color: $maron-baground;
+}
+
+@media (min-width: 992px) {
+  #sideNav {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    width: $sidebar-base-width;
+    height: 100vh;
+  }
+}
