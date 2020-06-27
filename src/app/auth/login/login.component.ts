@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
-    // stop here if form is invalid
     if (this.loginForm.invalid) {
       console.error('Invalide formulaire');
       return;
@@ -45,5 +43,6 @@ export class LoginComponent implements OnInit {
       this.loginForm.value.username,
       this.loginForm.value.password,
     );
+    this.loading = false;
   }
 }
