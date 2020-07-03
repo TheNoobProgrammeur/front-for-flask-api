@@ -1,5 +1,3 @@
-$green: #28a745;
-$white: #fff !default;
 $sidebar-base-width: 17rem;
 
 $maron-baground: #201616;
@@ -7,8 +5,22 @@ $maron-item-color: #201616;
 $active-baground: #fe9c65;
 $lien-baground: #cc5715;
 
-#sideNav {
+nav {
   background-color: $maron-baground;
+}
+
+#sideNav {
+  .navbar-nav .nav-item .nav-link {
+    font-weight: 800;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    color: $active-baground;
+  }
+  .navbar-toggler {
+    &:focus {
+      outline-color: lighten($active-baground, 15%);
+    }
+  }
 }
 
 @media (min-width: 992px) {
@@ -23,5 +35,35 @@ $lien-baground: #cc5715;
 
     width: $sidebar-base-width;
     height: 100vh;
+    .navbar-brand {
+      display: flex;
+
+      margin: auto auto 0;
+      padding: 0.5rem;
+      .img-profile {
+        max-width: 10rem;
+        max-height: 10rem;
+        border: 0.5rem solid fade-out($maron-baground, 0.8);
+      }
+    }
+    .navbar-collapse {
+      display: flex;
+      align-items: flex-start;
+      flex-grow: 0;
+
+      width: 100%;
+      margin-bottom: auto;
+      .navbar-nav {
+        flex-direction: column;
+
+        width: 100%;
+        .nav-item {
+          display: block;
+          .nav-link {
+            display: block;
+          }
+        }
+      }
+    }
   }
 }
