@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 
 import { UserService, SessionService } from '../core/services';
+import { User } from '../core/models';
 
 @Injectable()
 export class HomeAuthResolver implements CanActivate {
@@ -18,10 +19,12 @@ export class HomeAuthResolver implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     this.authenticationService.userIsConnected();
-    if (this.sessiosnService.getUser().isConected === true) {
+    const user = this.sessiosnService.getUser();
+    if (user.isConected === true) {
       return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
-    this.router.navigate(['/login']);
-    return false;
   }
 }

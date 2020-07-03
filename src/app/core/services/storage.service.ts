@@ -20,7 +20,10 @@ export class SessionService {
   }
 
   getUser(): User {
-    return JSON.parse(window.sessionStorage.user);
+    if (window.sessionStorage.user != null) {
+      return JSON.parse(window.sessionStorage.user);
+    }
+    return new User();
   }
 
   destroyUser() {
