@@ -19,8 +19,11 @@ export class SessionService {
     window.sessionStorage.user = JSON.stringify(user);
   }
 
-  getUser(): User {
-    return JSON.parse(window.sessionStorage.user);
+  getUser(): User | null {
+    if (window.sessionStorage.user != null) {
+      return JSON.parse(window.sessionStorage.user);
+    }
+    return null;
   }
 
   destroyUser() {

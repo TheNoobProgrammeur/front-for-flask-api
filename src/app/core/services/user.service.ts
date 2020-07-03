@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  private user = new User();
+  user = this.sessionService.getUser();
 
   constructor(
     private apiService: ApiService,

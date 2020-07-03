@@ -10,8 +10,10 @@ import { SessionService } from './core/services';
 })
 export class AppComponent implements OnInit {
   constructor(private sessionService: SessionService) {
-    const user = new User();
-    this.sessionService.saveUser(user);
+    if (this.sessionService.getUser() == null) {
+      const user = new User();
+      this.sessionService.saveUser(user);
+    }
     console.log(environment.production); // Logs false for default environment
   }
   title = 'myApplicationFront';
